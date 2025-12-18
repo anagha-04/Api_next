@@ -29,26 +29,26 @@ class UserRegisterView(APIView):
         
         return Response(user_serialzer.errors,status=status.HTTP_400_BAD_REQUEST)
 
-# class LoginView(APIView):
+class LoginView(APIView):
 
-#     authentication_classes = [BasicAuthentication]
+    authentication_classes = [BasicAuthentication]
 
-#     permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
-#     def post(self,request):
+    def post(self,request):
 
-#         user = request.user
+        user = request.user
 
-#         refresh = RefreshToken.for_user(user) #usernmae password user_id
+        refresh = RefreshToken.for_user(user) #usernmae password user_id
         
-#         return Response(
-#             {
-#                 "message":"login success",
-#                 "access": str(refresh.access_token),
-#                 "refresh": str(refresh)
-#             },
-#             status=status.HTTP_200_OK
-#         )
+        return Response(
+            {
+                "message":"login success",
+                "access": str(refresh.access_token),
+                "refresh": str(refresh)
+            },
+            status=status.HTTP_200_OK
+        )
 
 
 # class ProductListCreateView(ListCreateAPIView):
