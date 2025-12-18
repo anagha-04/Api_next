@@ -17,11 +17,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from userapp.views import*
+from rest_framework.routers import DefaultRouter
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/',UserRegisterView.as_view(),name="register"),
     path('login/',LoginView.as_view(),name="login"),
     path('listcreate/',ProductListCreateView.as_view(),name="listcreate"),
+    path('retriveupdatedelete/<int:pk>/',ProductretriveupdatedeleteView.as_view(),name="rud"),
+
 
 ]
+router = DefaultRouter()
+router.register('products',ProductViewset,basename='product')
+
+urlpatterns += router.urls

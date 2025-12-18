@@ -7,8 +7,10 @@ from rest_framework.authentication import BasicAuthentication
 from rest_framework.permissions import AllowAny,IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework.generics import ListCreateAPIView
+from rest_framework.generics import ListCreateAPIView,RetrieveUpdateDestroyAPIView
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.viewsets import ModelViewSet
+
 
 # Create your views here.
 
@@ -61,6 +63,41 @@ class ProductListCreateView(ListCreateAPIView):
 
     authentication_classes = [JWTAuthentication]
 
+    def perform_create(self,serializer):
+
+        serializer.save(user = self.request.user)
+
+class ProductretriveupdatedeleteView(RetrieveUpdateDestroyAPIView):
+
+    serializer_class = Productserializer
+
+    permission_classes =[IsAuthenticated]
+
+    authentication_classes =[JWTAuthentication]
+
+    def get_queryset(self):
+
+        return ProductModel.objects.filter(user = self.request.user)
+
+#viewset
+
+#viewset is a class which combines list,create,update,retriveand delete into
+#one single class and DRF automatically maps the http methods
+#the urls can be created automatically using the Router
+
+
+class ProductViewset(ModelViewSet):
+
+    serializer_class =Productserializer
+
+    authentication_classes = [JWTAuthentication]
+
+    permission_classes =[IsAuthenticated]
+
+    def get_queryset(self):
+        
+        return ProductModel.objects.filter(user = self.request.user)
+    
     def perform_create(self,serializer):
 
         serializer.save(user = self.request.user)
