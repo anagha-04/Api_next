@@ -51,16 +51,16 @@ class LoginView(APIView):
         )
 
 
-# class ProductListCreateView(ListCreateAPIView):
+class ProductListCreateView(ListCreateAPIView):
 
-#     queryset = ProductModel.objects.all()
+    queryset = ProductModel.objects.all()
 
-#     serializer_class = Productserializer
+    serializer_class = Productserializer
 
-#     permission_classes=[IsAuthenticated]
+    permission_classes=[IsAuthenticated]
 
-#     authentication_classes = [JWTAuthentication]
+    authentication_classes = [JWTAuthentication]
 
-#     def perform_create(self,serializer):
+    def perform_create(self,serializer):
 
-#         serializer.save(user = self.request.user)
+        serializer.save(user = self.request.user)
