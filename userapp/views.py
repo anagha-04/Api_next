@@ -13,21 +13,21 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 # Create your views here.
 
 
-# class UserRegisterView(APIView):
+class UserRegisterView(APIView):
 
-#     permission_classes = [AllowAny]
+    permission_classes = [AllowAny]
 
-#     def post(self, request):
+    def post(self, request):
 
-#         user_serialzer = Userserializer(data = request.data)
+        user_serialzer = Userserializer(data = request.data)
 
-#         if user_serialzer.is_valid():
+        if user_serialzer.is_valid():
 
-#             user=user_serialzer.save()
+            user=user_serialzer.save()
 
-#             return Response(user_serialzer.data,status=status.HTTP_201_CREATED)
+            return Response(user_serialzer.data,status=status.HTTP_201_CREATED)
         
-#         return Response(user_serialzer.errors,status=status.HTTP_400_BAD_REQUEST)
+        return Response(user_serialzer.errors,status=status.HTTP_400_BAD_REQUEST)
 
 # class LoginView(APIView):
 
