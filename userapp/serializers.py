@@ -21,10 +21,10 @@ class Userserializer(serializers.ModelSerializer):
         return user
 
 
-# class Productserializer(serializers.ModelSerializer):
+class Productserializer(serializers.ModelSerializer):
 
-#     class Meta:
+    class Meta:
 
-#         model = ProductModel
+        model = ProductModel
 
-#         exclude =('user',)
+        exclude =('user',)
