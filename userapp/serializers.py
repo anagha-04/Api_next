@@ -1,24 +1,24 @@
-# from rest_framework import serializers
-# from userapp.models import ProductModel,User
+from rest_framework import serializers
+from userapp.models import ProductModel,User
 
-# class Userserializer(serializers.ModelSerializer):
+class Userserializer(serializers.ModelSerializer):
 
-#     class Meta:
+    class Meta:
 
-#         model = User
+        model = User
 
-#         fields = ["username","password","email"]
+        fields = ["username","password","email"]
 
     
-#     def create(self, validated_data):
+    def create(self, validated_data):
 
-#         user = User.objects.create_user(
-#             username=validated_data['username'],
-#             password = validated_data['password'],
-#             email=validated_data['email']
-#         )
+        user = User.objects.create_user(
+            username=validated_data['username'],
+            password = validated_data['password'],
+            email=validated_data['email']
+        )
 
-#         return user
+        return user
 
 
 # class Productserializer(serializers.ModelSerializer):
